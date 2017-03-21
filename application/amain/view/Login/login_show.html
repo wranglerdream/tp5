@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="__STATIC__/css/ch-ui.admin.css">
+	<link rel="stylesheet" href="__STATIC__/font/css/font-awesome.min.css">
+	<script src="__STATIC__/js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#sub").click(function(){
+				var mname = $("input[name='mname']").val();
+				var mpass = $("input[name='mpass']").val();
+				var mcode = $("input[name='mcode']").val();
+                if(!mname){
+                	$("#errorp").text('用户名不能为空！');return false;
+                }
+                if(!mpass){
+                	$("#errorp").text('密码不能为空！');return false;
+                }
+				if(!mcode){
+                	$("#errorp").text('验证码不能为空！');return false;
+                }
+                $("form").submit();
+			});
+		});
+	</script>
+</head>
+<body style="background:#F3F3F4;">
+	<div class="login_box">
+		<h1>Blog</h1>
+		<h2>欢迎使用数据管理平台</h2>
+		<div class="form">
+			<p style="color:red" id="errorp"></p>
+			<form action="login_run" method="post">
+				<ul>
+					<li>
+					<input type="text" name="mname" class="text"/>
+						<span><i class="fa fa-user"></i></span>
+					</li>
+					<li>
+						<input type="password" name="mpass" class="text"/>
+						<span><i class="fa fa-lock"></i></span>
+					</li>
+					<li>
+						<input type="text" class="code" name="mcode"/>
+						<span><i class="fa fa-check-square-o"></i></span>
+						<img src="{:captcha_src()}" alt="" onclick="this.src=this.src+'?time='+Math.random()">
+					</li>
+					<li>
+						<input type="submit" id="sub" value="立即登陆"/>
+					</li>
+				</ul>
+			</form>
+			<p><a href="#">返回首页</a> &copy; 2016 Powered by </p>
+		</div>
+	</div>
+</body>
+</html>
